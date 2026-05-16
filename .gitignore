@@ -1,0 +1,21 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.log
+publish/
+
+# Angular
+delux-barber-frontend/node_modules/
+delux-barber-frontend/dist/
+delux-barber-frontend/.angular/
+
+# Secrets
+appsettings.Production.json
+.env
+
+# OS
+.DS_Store
+Thumbs.db
