@@ -1,0 +1,116 @@
+<div class="dashboard-page">
+  <div class="page-header">
+    <h1>Dashboard</h1>
+    <p class="text-muted">Welcome back. Here's what's happening today.</p>
+  </div>
+
+  <div *ngIf="loading" class="text-center"><div class="spinner"></div></div>
+
+  <ng-container *ngIf="!loading && stats">
+    <!-- STAT CARDS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-gold">📅</div>
+        <div class="stat-body">
+          <div class="stat-value">{{ stats.todayAppointments }}</div>
+          <div class="stat-label">Today's Appointments</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-warning">⏳</div>
+        <div class="stat-body">
+          <div class="stat-value">{{ stats.pendingAppointments }}</div>
+          <div class="stat-label">Pending</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-success">✓</div>
+        <div class="stat-body">
+          <div class="stat-value">{{ stats.confirmedAppointments }}</div>
+          <div class="stat-label">Confirmed</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-info">◉</div>
+        <div class="stat-body">
+          <div class="stat-value">{{ stats.totalClients }}</div>
+          <div class="stat-label">Total Clients</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-gold">✂</div>
+        <div class="stat-body">
+          <div class="stat-value">{{ stats.activeBarbers }}</div>
+          <div class="stat-label">Active Barbers</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-success">$</div>
+        <div class="stat-body">
+          <div class="stat-value">{{ stats.estimatedRevenue | number:'1.0-0' }} ALL</div>
+          <div class="stat-label">Est. Revenue (Today)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECENT APPOINTMENTS -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h2>Recent Appointments</h2>
+        <a routerLink="/admin/appointments" class="btn btn-dark btn-sm">View All</a>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table" *ngIf="stats.recentAppointments.length > 0; else noRecent">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Service</th>
+              <th>Barber</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of stats.recentAppointments">
+              <td><strong>{{ a.clientName }}</strong></td>
+              <td>{{ a.serviceName }}</td>
+              <td>{{ a.barberName || '—' }}</td>
+              <td>{{ a.appointmentDate | date:'dd/MM/yyyy' }}</td>
+              <td>{{ a.appointmentTime }}</td>
+              <td>
+                <span class="badge" [ngClass]="getStatusClass(a.status)">
+                  {{ a.status }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #noRecent>
+          <p class="text-muted text-center" style="padding:32px">No recent appointments.</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="quick-links">
+      <a routerLink="/admin/appointments" class="quick-link-card">
+        <span class="ql-icon">📅</span>
+        <span>Manage Appointments</span>
+      </a>
+      <a routerLink="/admin/barbers" class="quick-link-card">
+        <span class="ql-icon">✂</span>
+        <span>Manage Barbers</span>
+      </a>
+      <a routerLink="/admin/services" class="quick-link-card">
+        <span class="ql-icon">★</span>
+        <span>Manage Services</span>
+      </a>
+      <a routerLink="/admin/clients" class="quick-link-card">
+        <span class="ql-icon">◉</span>
+        <span>View Clients</span>
+      </a>
+    </div>
+  </ng-container>
+</div>

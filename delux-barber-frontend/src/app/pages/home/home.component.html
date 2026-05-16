@@ -1,0 +1,205 @@
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="nav-logo" routerLink="/">
+      <span class="logo-icon">✂</span>
+      <span class="logo-text">DELUX</span>
+    </a>
+    <ul class="nav-links">
+      <li><a routerLink="/" class="nav-link">Home</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#barbers" class="nav-link">Barbers</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a routerLink="/book" class="btn btn-gold btn-sm">Book Now</a>
+    </div>
+    <button class="nav-hamburger" onclick="this.closest('nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Premium Barbershop Experience</p>
+    <h1 class="hero-title">
+      PRECISION CUTS.<br>
+      <span class="hero-title-gold">PREMIUM STYLE.</span>
+    </h1>
+    <p class="hero-subtitle">
+      Step into Delux Barber Shop — where master craftsmen sculpt confidence.<br>
+      Every cut is an art. Every visit, a ritual.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/book" class="btn btn-gold">Book Appointment</a>
+      <a routerLink="/status/check" class="btn btn-outline-gold">Check Status</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Expert Barbers</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">2000+</span>
+        <span class="stat-label">Happy Clients</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll Down</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-container">
+    <div class="section-header">
+      <p class="section-eyebrow">What We Offer</p>
+      <h2 class="section-title">Our <span class="text-gold">Services</span></h2>
+      <p class="section-subtitle">From classic cuts to luxury grooming — we do it all with precision and style.</p>
+    </div>
+    <div class="services-grid" *ngIf="services.length > 0; else servicesLoading">
+      <div class="service-card" *ngFor="let service of services">
+        <div class="service-icon">✂</div>
+        <div class="service-body">
+          <h3 class="service-name">{{ service.name }}</h3>
+          <p class="service-desc" *ngIf="service.description">{{ service.description }}</p>
+          <div class="service-meta">
+            <span class="service-duration">⏱ {{ service.durationMinutes }} min</span>
+            <span class="service-price">{{ service.price | number:'1.0-0' }} ALL</span>
+          </div>
+        </div>
+        <a routerLink="/book" class="service-book-btn">Book</a>
+      </div>
+    </div>
+    <ng-template #servicesLoading>
+      <div class="text-center" style="padding:40px 0">
+        <div class="spinner"></div>
+        <p class="text-muted">Loading services...</p>
+      </div>
+    </ng-template>
+    <div class="section-cta">
+      <a routerLink="/book" class="btn btn-gold">Book Any Service</a>
+    </div>
+  </div>
+</section>
+
+<!-- BARBERS -->
+<section class="section section-alt" id="barbers">
+  <div class="section-container">
+    <div class="section-header">
+      <p class="section-eyebrow">Meet The Team</p>
+      <h2 class="section-title">Our <span class="text-gold">Barbers</span></h2>
+      <p class="section-subtitle">Skilled craftsmen dedicated to making you look your best.</p>
+    </div>
+    <div class="barbers-grid" *ngIf="barbers.length > 0; else barbersLoading">
+      <div class="barber-card" *ngFor="let barber of barbers">
+        <div class="barber-avatar">
+          <img *ngIf="barber.imageUrl" [src]="barber.imageUrl" [alt]="barber.fullName || (barber.firstName + ' ' + barber.lastName)" />
+          <div *ngIf="!barber.imageUrl" class="barber-avatar-placeholder">
+            {{ (barber.fullName || barber.firstName || '?').charAt(0).toUpperCase() }}
+          </div>
+        </div>
+        <div class="barber-info">
+          <h3 class="barber-name">{{ barber.fullName || (barber.firstName + ' ' + barber.lastName) }}</h3>
+          <p class="barber-specialty" *ngIf="barber.specialty">{{ barber.specialty }}</p>
+          <p class="barber-bio" *ngIf="barber.bio">{{ barber.bio }}</p>
+          <a routerLink="/book" class="btn btn-outline-gold btn-sm" style="margin-top:12px">Book Now</a>
+        </div>
+      </div>
+    </div>
+    <ng-template #barbersLoading>
+      <div class="text-center" style="padding:40px 0">
+        <div class="spinner"></div>
+        <p class="text-muted">Loading barbers...</p>
+      </div>
+    </ng-template>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section" id="about">
+  <div class="section-container">
+    <div class="section-header">
+      <p class="section-eyebrow">Why Delux</p>
+      <h2 class="section-title">The <span class="text-gold">Delux</span> Experience</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>Master Craftsmen</h3>
+        <p>Our barbers are trained professionals with years of experience in precision cuts and grooming.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>Premium Products</h3>
+        <p>We use only the finest grooming products to ensure the best results for your hair and skin.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Easy Booking</h3>
+        <p>Book your appointment online in seconds. No waiting, no hassle — just show up and look sharp.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💈</div>
+        <h3>Classic Atmosphere</h3>
+        <p>A premium barbershop environment designed for comfort, style, and the classic barber experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<footer class="footer" id="contact">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="logo-icon">✂</span>
+        <span class="logo-text">DELUX</span>
+      </div>
+      <p class="footer-tagline">Precision Cuts. Premium Style.</p>
+      <div class="footer-social">
+        <a href="#" class="social-link">FB</a>
+        <a href="#" class="social-link">IG</a>
+        <a href="#" class="social-link">TT</a>
+      </div>
+    </div>
+    <div class="footer-info">
+      <h4>Contact</h4>
+      <ul>
+        <li>📍 Rruga Myslym Shyri, Tiranë</li>
+        <li>📞 <a href="tel:+355691234567">+355 69 123 4567</a></li>
+        <li>✉ <a href="mailto:info@deluxbarbershop.com">info&#64;deluxbarbershop.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-hours">
+      <h4>Hours</h4>
+      <ul>
+        <li><span>Monday – Saturday</span><span>09:00 – 20:00</span></li>
+        <li><span>Sunday</span><span class="text-muted">Closed</span></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a routerLink="/book">Book Appointment</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#barbers">Our Barbers</a></li>
+        <li><a routerLink="/admin/login">Admin</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {{ 2026 }} Delux Barber Shop. All rights reserved.</p>
+  </div>
+</footer>

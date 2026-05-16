@@ -1,0 +1,114 @@
+<div class="status-page">
+  <div class="status-header">
+    <a routerLink="/" class="back-home">&#8592; Back to Home</a>
+    <div class="book-logo">
+      <span class="logo-icon">✂</span>
+      <span class="logo-text">DELUX</span>
+    </div>
+  </div>
+
+  <div class="status-container">
+    <div class="status-title-area">
+      <h1>Booking <span class="text-gold">Status</span></h1>
+      <p class="text-muted">View your appointment details below.</p>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner"></div>
+      <p class="text-muted">Loading booking details...</p>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="!loading && error" class="error-card">
+      <div class="error-icon">✕</div>
+      <h3>Booking Not Found</h3>
+      <p>{{ error }}</p>
+      <a routerLink="/" class="btn btn-gold" style="margin-top:20px">Go Home</a>
+    </div>
+
+    <!-- Status Card -->
+    <div *ngIf="!loading && status" class="status-card">
+      <!-- Token -->
+      <div class="status-token-row">
+        <span class="token-label">Token</span>
+        <span class="token-val">{{ status.token }}</span>
+      </div>
+
+      <!-- Status Badge -->
+      <div class="status-badge-row">
+        <span class="badge" [ngClass]="getStatusClass(status.status)">
+          {{ status.status }}
+        </span>
+        <span class="created-at text-muted">Booked on {{ status.createdAt | date:'dd/MM/yyyy' }}</span>
+      </div>
+
+      <!-- Cancelled banner -->
+      <div *ngIf="cancelled" class="cancelled-banner">
+        ✓ Your appointment has been cancelled successfully.
+      </div>
+
+      <!-- Details -->
+      <div class="details-grid">
+        <div class="detail-item">
+          <span class="detail-label">Name</span>
+          <span class="detail-value">{{ status.firstName }} {{ status.lastName }}</span>
+        </div>
+        <div class="detail-item" *ngIf="status.serviceName">
+          <span class="detail-label">Service</span>
+          <span class="detail-value text-gold">{{ status.serviceName }}</span>
+        </div>
+        <div class="detail-item" *ngIf="status.barberName">
+          <span class="detail-label">Barber</span>
+          <span class="detail-value">{{ status.barberName }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Date</span>
+          <span class="detail-value">{{ formatDate(status.appointmentDate) }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Time</span>
+          <span class="detail-value">{{ status.appointmentTime }}</span>
+        </div>
+        <div class="detail-item" *ngIf="status.notes">
+          <span class="detail-label">Notes</span>
+          <span class="detail-value">{{ status.notes }}</span>
+        </div>
+      </div>
+
+      <!-- Status Info -->
+      <div class="status-info-box" [ngClass]="'info-' + status.status.toLowerCase()">
+        <ng-container [ngSwitch]="status.status">
+          <ng-container *ngSwitchCase="'Pending'">
+            ⏳ Your booking is pending confirmation. We will confirm it shortly.
+          </ng-container>
+          <ng-container *ngSwitchCase="'Confirmed'">
+            ✓ Your appointment is confirmed. See you soon!
+          </ng-container>
+          <ng-container *ngSwitchCase="'Completed'">
+            ✓ This appointment has been completed. Thank you for visiting Delux!
+          </ng-container>
+          <ng-container *ngSwitchCase="'Cancelled'">
+            ✕ This appointment has been cancelled.
+          </ng-container>
+          <ng-container *ngSwitchCase="'NoShow'">
+            ⚠ This appointment was marked as no-show.
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <!-- Cancel button -->
+      <div class="status-actions" *ngIf="status.canCancel && !cancelled && status.status !== 'Cancelled'">
+        <button class="btn btn-danger" (click)="cancel()" [disabled]="cancelling">
+          <span *ngIf="cancelling">Cancelling...</span>
+          <span *ngIf="!cancelling">Cancel Appointment</span>
+        </button>
+      </div>
+
+      <div class="status-actions">
+        <a routerLink="/" class="btn btn-dark">Back to Home</a>
+        <a routerLink="/book" class="btn btn-outline-gold">Book New Appointment</a>
+      </div>
+    </div>
+  </div>
+</div>

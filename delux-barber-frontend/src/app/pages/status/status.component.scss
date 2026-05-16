@@ -1,0 +1,219 @@
+.status-page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: 80px;
+}
+
+.status-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .back-home {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    &:hover { color: var(--gold); }
+  }
+
+  .book-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    .logo-icon { font-size: 18px; color: var(--gold); }
+    .logo-text {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--text);
+    }
+  }
+}
+
+.status-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+}
+
+.status-title-area {
+  text-align: center;
+  margin-bottom: 40px;
+
+  h1 {
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+}
+
+// Error card
+.error-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 48px 32px;
+  text-align: center;
+
+  .error-icon {
+    width: 64px; height: 64px;
+    background: rgba(244,67,54,0.1);
+    border: 2px solid var(--danger);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--danger);
+    font-weight: 700;
+    margin: 0 auto 20px;
+  }
+
+  h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  p { color: var(--text-muted); font-size: 14px; }
+}
+
+// Main status card
+.status-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.status-token-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+
+  .token-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .token-val {
+    font-family: monospace;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    word-break: break-all;
+  }
+}
+
+.status-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  .created-at { font-size: 12px; }
+}
+
+.cancelled-banner {
+  background: rgba(76,175,80,0.1);
+  border: 1px solid var(--success);
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+
+  &:nth-child(2n) { border-right: none; }
+  &:last-child, &:nth-last-child(2):nth-child(2n+1) { border-bottom: none; }
+
+  .detail-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .detail-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+}
+
+.status-info-box {
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-left: 3px solid;
+
+  &.info-pending {
+    background: rgba(255,152,0,0.1);
+    border-color: var(--warning);
+    color: var(--warning);
+  }
+  &.info-confirmed {
+    background: rgba(76,175,80,0.1);
+    border-color: var(--success);
+    color: var(--success);
+  }
+  &.info-completed {
+    background: rgba(33,150,243,0.1);
+    border-color: var(--info);
+    color: var(--info);
+  }
+  &.info-cancelled {
+    background: rgba(244,67,54,0.1);
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+  &.info-noshow {
+    background: rgba(136,136,136,0.1);
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+  }
+}
+
+.status-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}

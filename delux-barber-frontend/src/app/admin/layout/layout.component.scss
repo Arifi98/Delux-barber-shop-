@@ -1,0 +1,230 @@
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+}
+
+// ===== SIDEBAR =====
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; bottom: 0; left: 0;
+  z-index: 200;
+  transition: transform 0.25s ease;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 64px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+
+  .sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+
+    .logo-icon { font-size: 18px; color: var(--gold); }
+    .logo-text {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--text);
+    }
+  }
+
+  .sidebar-close {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    transition: color 0.2s;
+    &:hover { color: var(--text); }
+  }
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: all 0.15s;
+  border-radius: 0;
+  font-family: 'Montserrat', sans-serif;
+
+  .nav-icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .nav-label {
+    white-space: nowrap;
+  }
+
+  &:hover {
+    background: rgba(201,168,76,0.06);
+    color: var(--text);
+  }
+
+  &.active {
+    background: rgba(201,168,76,0.1);
+    color: var(--gold);
+    border-right: 3px solid var(--gold);
+  }
+
+  &.nav-item-muted {
+    font-size: 12px;
+    &:hover { color: var(--text-muted); background: none; }
+  }
+
+  &.nav-item-danger {
+    &:hover { background: rgba(244,67,54,0.08); color: var(--danger); }
+  }
+}
+
+.sidebar-bottom {
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+// ===== MAIN =====
+.main-wrap {
+  flex: 1;
+  margin-left: 240px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left 0.25s ease;
+}
+
+.top-bar {
+  height: 64px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+
+    span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text-muted);
+      transition: background 0.2s;
+    }
+
+    &:hover span { background: var(--text); }
+  }
+
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+  }
+}
+
+.main-content {
+  flex: 1;
+  padding: 32px;
+  max-width: 100%;
+  overflow-x: hidden;
+
+  @media (max-width: 768px) {
+    padding: 20px 16px;
+  }
+}
+
+// ===== OVERLAY (mobile) =====
+.sidebar-overlay {
+  display: none;
+}
+
+// ===== COLLAPSED / MOBILE =====
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .admin-shell:not(.sidebar-collapsed) .sidebar {
+    transform: translateX(0);
+  }
+
+  .admin-shell:not(.sidebar-collapsed) .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 150;
+  }
+
+  .sidebar-header .sidebar-close {
+    display: block;
+  }
+
+  .main-wrap {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .admin-shell.sidebar-collapsed {
+    .sidebar {
+      transform: translateX(-240px);
+    }
+    .main-wrap {
+      margin-left: 0;
+    }
+  }
+}

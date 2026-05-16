@@ -1,0 +1,64 @@
+<div class="clients-page">
+  <div class="page-header">
+    <div>
+      <h1>Clients</h1>
+      <p class="text-muted">View all registered clients and their booking history.</p>
+    </div>
+    <div class="form-group" style="margin-bottom:0;min-width:260px">
+      <label>Search</label>
+      <input
+        type="text"
+        [(ngModel)]="search"
+        (ngModelChange)="applySearch()"
+        placeholder="Name, phone, or email..."
+      />
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="text-center"><div class="spinner"></div></div>
+
+  <div class="table-card" *ngIf="!loading">
+    <div class="table-info" *ngIf="clients.length > 0">
+      <span class="text-muted">Showing {{ filtered.length }} of {{ clients.length }} clients</span>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table" *ngIf="filtered.length > 0; else noClients">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Total Bookings</th>
+            <th>Last Appointment</th>
+            <th>Member Since</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of filtered">
+            <td>
+              <div class="client-name-cell">
+                <div class="client-avatar">{{ c.firstName.charAt(0) }}{{ c.lastName.charAt(0) }}</div>
+                <strong>{{ c.firstName }} {{ c.lastName }}</strong>
+              </div>
+            </td>
+            <td>{{ c.phone }}</td>
+            <td>{{ c.email || '—' }}</td>
+            <td>
+              <span class="count-badge">{{ c.totalAppointments }}</span>
+            </td>
+            <td>
+              <span *ngIf="c.lastAppointmentDate">{{ c.lastAppointmentDate | date:'dd/MM/yyyy' }}</span>
+              <span *ngIf="!c.lastAppointmentDate" class="text-muted">Never</span>
+            </td>
+            <td class="text-muted">{{ c.createdAt | date:'dd/MM/yyyy' }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noClients>
+        <p class="text-muted text-center" style="padding:40px">
+          {{ search ? 'No clients match your search.' : 'No clients yet.' }}
+        </p>
+      </ng-template>
+    </div>
+  </div>
+</div>

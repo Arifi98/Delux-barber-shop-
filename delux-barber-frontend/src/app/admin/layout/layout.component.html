@@ -1,0 +1,89 @@
+<div class="admin-shell" [class.sidebar-collapsed]="!sidebarOpen()">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a routerLink="/" class="sidebar-logo">
+        <span class="logo-icon">✂</span>
+        <span class="logo-text">DELUX</span>
+      </a>
+      <button class="sidebar-close" (click)="toggleSidebar()">✕</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a
+        routerLink="/admin/dashboard"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">▦</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a
+        routerLink="/admin/appointments"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">Appointments</span>
+      </a>
+      <a
+        routerLink="/admin/barbers"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">✂</span>
+        <span class="nav-label">Barbers</span>
+      </a>
+      <a
+        routerLink="/admin/services"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">★</span>
+        <span class="nav-label">Services</span>
+      </a>
+      <a
+        routerLink="/admin/clients"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">◉</span>
+        <span class="nav-label">Clients</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a routerLink="/" class="nav-item nav-item-muted">
+        <span class="nav-icon">↗</span>
+        <span class="nav-label">View Website</span>
+      </a>
+      <button class="nav-item nav-item-danger" (click)="logout()">
+        <span class="nav-icon">⎋</span>
+        <span class="nav-label">Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- OVERLAY (mobile) -->
+  <div class="sidebar-overlay" *ngIf="sidebarOpen()" (click)="toggleSidebar()"></div>
+
+  <!-- MAIN -->
+  <div class="main-wrap">
+    <!-- Top bar -->
+    <header class="top-bar">
+      <button class="hamburger" (click)="toggleSidebar()">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="top-bar-right">
+        <span class="top-bar-label text-muted">Admin Panel</span>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="main-content">
+      <router-outlet />
+    </main>
+  </div>
+
+</div>

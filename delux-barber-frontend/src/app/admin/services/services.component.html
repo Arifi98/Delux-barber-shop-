@@ -1,0 +1,95 @@
+<div class="services-page">
+  <div class="page-header">
+    <div>
+      <h1>Services</h1>
+      <p class="text-muted">Manage your barbershop services and pricing.</p>
+    </div>
+    <button class="btn btn-gold" (click)="openCreate()">+ Add Service</button>
+  </div>
+
+  <div *ngIf="loading" class="text-center"><div class="spinner"></div></div>
+
+  <div class="table-card" *ngIf="!loading">
+    <div class="table-wrap">
+      <table class="data-table" *ngIf="services.length > 0; else noServices">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Duration</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of services">
+            <td><strong>{{ s.name }}</strong></td>
+            <td class="text-muted" style="max-width:220px">{{ s.description || '—' }}</td>
+            <td>{{ s.durationMinutes }} min</td>
+            <td class="text-gold"><strong>{{ s.price | number:'1.0-0' }} ALL</strong></td>
+            <td>
+              <span class="badge" [class.badge-confirmed]="s.isActive" [class.badge-cancelled]="!s.isActive">
+                {{ s.isActive ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td>
+              <div class="action-btns">
+                <button class="btn btn-dark btn-sm" (click)="openEdit(s)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="delete(s)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noServices>
+        <p class="text-muted text-center" style="padding:40px">No services yet. Add your first service.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ editingId ? 'Edit Service' : 'Add Service' }}</h3>
+      <button class="modal-close" (click)="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-stack">
+        <div class="form-group">
+          <label>Service Name *</label>
+          <input type="text" [(ngModel)]="form.name" placeholder="e.g. Classic Haircut" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea [(ngModel)]="form.description" placeholder="Brief description of the service..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Price (ALL) *</label>
+            <input type="number" [(ngModel)]="form.price" placeholder="0" min="0" />
+          </div>
+          <div class="form-group">
+            <label>Duration (minutes) *</label>
+            <input type="number" [(ngModel)]="form.durationMinutes" placeholder="30" min="5" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="form.isActive" style="width:auto;margin-right:8px" />
+            Active (visible to customers)
+          </label>
+        </div>
+      </div>
+      <p *ngIf="error" class="error-msg">{{ error }}</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-dark" (click)="closeModal()">Cancel</button>
+      <button class="btn btn-gold" (click)="save()" [disabled]="saving || !form.name || form.price < 0">
+        {{ saving ? 'Saving...' : (editingId ? 'Save Changes' : 'Add Service') }}
+      </button>
+    </div>
+  </div>
+</div>

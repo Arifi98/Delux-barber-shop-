@@ -1,0 +1,6 @@
+@DeluxBarberShop.API_HostAddress = http://localhost:5098
+
+GET {{DeluxBarberShop.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
