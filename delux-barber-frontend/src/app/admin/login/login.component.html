@@ -4,8 +4,8 @@
       <span class="logo-icon">✂</span>
       <span class="logo-text">DELUX</span>
     </div>
-    <h2 class="login-title">Admin Panel</h2>
-    <p class="login-sub">Sign in to manage your barbershop.</p>
+    <h2 class="login-title">Paneli i Adminit</h2>
+    <p class="login-sub">Hyni për të menaxhuar berbershop-in tuaj.</p>
 
     <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
       <div class="form-group">
@@ -20,7 +20,7 @@
         />
       </div>
       <div class="form-group">
-        <label>Password</label>
+        <label>Fjalëkalimi</label>
         <input
           type="password"
           [(ngModel)]="password"
@@ -39,13 +39,13 @@
         [disabled]="loading || !email || !password"
         style="justify-content:center; margin-top:8px"
       >
-        <span *ngIf="loading">Signing in...</span>
-        <span *ngIf="!loading">Sign In</span>
+        <span *ngIf="loading">Duke hyrë...</span>
+        <span *ngIf="!loading">Hyr</span>
       </button>
     </form>
 
     <div class="login-footer">
-      <a href="/" style="font-size:12px; color:var(--text-muted)">&#8592; Back to website</a>
+      <a href="/" style="font-size:12px; color:var(--text-muted)">&#8592; Kthehu në faqe</a>
     </div>
   </div>
 </div>

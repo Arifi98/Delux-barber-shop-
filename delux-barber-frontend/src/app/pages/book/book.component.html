@@ -1,9 +1,9 @@
-<!-- BOOK PAGE -->
+<!-- FAQJA E REZERVIMIT -->
 <div class="book-page">
-  <!-- Header Bar -->
+  <!-- Header -->
   <div class="book-header">
     <a routerLink="/" class="back-home">
-      <span>&#8592;</span> Back to Home
+      <span>&#8592;</span> Kthehu në Ballina
     </a>
     <div class="book-logo">
       <span class="logo-icon">✂</span>
@@ -13,18 +13,18 @@
 
   <div class="book-container">
     <div class="book-title-area">
-      <h1>Book Your <span class="text-gold">Appointment</span></h1>
-      <p class="text-muted">Complete the steps below to secure your spot.</p>
+      <h1>Rezervo <span class="text-gold">Takimin Tënd</span></h1>
+      <p class="text-muted">Plotëso hapat më poshtë për të siguruar vendin tënd.</p>
     </div>
 
-    <!-- STEP INDICATOR (only show for steps 1-3) -->
+    <!-- TREGUES HAPI (vetëm për hapat 1-3) -->
     <div class="steps-indicator" *ngIf="currentStep < 4">
       <div class="step-item" [class.active]="currentStep === 1" [class.done]="currentStep > 1">
         <div class="step-circle">
           <span *ngIf="currentStep <= 1">1</span>
           <span *ngIf="currentStep > 1">✓</span>
         </div>
-        <span class="step-label">Service</span>
+        <span class="step-label">Shërbimi</span>
       </div>
       <div class="step-connector" [class.done]="currentStep > 1"></div>
       <div class="step-item" [class.active]="currentStep === 2" [class.done]="currentStep > 2">
@@ -32,7 +32,7 @@
           <span *ngIf="currentStep <= 2">2</span>
           <span *ngIf="currentStep > 2">✓</span>
         </div>
-        <span class="step-label">Date & Time</span>
+        <span class="step-label">Data & Ora</span>
       </div>
       <div class="step-connector" [class.done]="currentStep > 2"></div>
       <div class="step-item" [class.active]="currentStep === 3" [class.done]="currentStep > 3">
@@ -40,20 +40,20 @@
           <span *ngIf="currentStep <= 3">3</span>
           <span *ngIf="currentStep > 3">✓</span>
         </div>
-        <span class="step-label">Your Info</span>
+        <span class="step-label">Të Dhënat</span>
       </div>
       <div class="step-connector"></div>
       <div class="step-item" [class.active]="currentStep === 4">
         <div class="step-circle">4</div>
-        <span class="step-label">Confirm</span>
+        <span class="step-label">Konfirmo</span>
       </div>
     </div>
 
-    <!-- ===== STEP 1: SELECT SERVICE ===== -->
+    <!-- ===== HAPI 1: ZGJIDHNI SHËRBIMIN ===== -->
     <div class="step-content" *ngIf="currentStep === 1">
       <div class="step-card">
-        <h2 class="step-heading">Select a Service</h2>
-        <p class="step-sub text-muted">Choose the service you'd like to book.</p>
+        <h2 class="step-heading">Zgjidhni Shërbimin</h2>
+        <p class="step-sub text-muted">Zgjidhni shërbimin që dëshironi të rezervoni.</p>
         <div class="services-list" *ngIf="services.length > 0; else loadingServices">
           <div
             class="service-option"
@@ -66,7 +66,7 @@
               <div>
                 <div class="service-option-name">{{ s.name }}</div>
                 <div class="service-option-desc text-muted" *ngIf="s.description">{{ s.description }}</div>
-                <div class="service-option-duration text-muted">⏱ {{ s.durationMinutes }} minutes</div>
+                <div class="service-option-duration text-muted">⏱ {{ s.durationMinutes }} minuta</div>
               </div>
             </div>
             <div class="service-option-price">{{ s.price | number:'1.0-0' }} ALL</div>
@@ -80,28 +80,28 @@
       <div class="step-nav">
         <span></span>
         <button class="btn btn-gold" (click)="next()" [disabled]="!canGoNext()">
-          Next: Date &amp; Time <span>&#8594;</span>
+          Hapi Tjetër: Data &amp; Ora <span>&#8594;</span>
         </button>
       </div>
     </div>
 
-    <!-- ===== STEP 2: DATE, BARBER, TIME ===== -->
+    <!-- ===== HAPI 2: DATA, BERBERI, ORA ===== -->
     <div class="step-content" *ngIf="currentStep === 2">
       <div class="step-card">
-        <h2 class="step-heading">Choose Date &amp; Time</h2>
-        <p class="step-sub text-muted">Select a barber (optional), pick a date, and choose your time slot.</p>
+        <h2 class="step-heading">Zgjidhni Datën &amp; Orën</h2>
+        <p class="step-sub text-muted">Zgjidhni berberin (opsionale), vendosni datën dhe zgjidhni orarin.</p>
 
-        <!-- Barber selection -->
+        <!-- Zgjedhja e berberit -->
         <div class="barber-select-section">
-          <h3 class="subsection-title">Select Barber <span class="text-muted">(optional)</span></h3>
+          <h3 class="subsection-title">Zgjidhni Berberin <span class="text-muted">(opsionale)</span></h3>
           <div class="barber-options">
             <div
               class="barber-option"
               [class.selected]="selectedBarber === null"
               (click)="selectBarber(null)"
             >
-              <div class="barber-option-avatar">ANY</div>
-              <div class="barber-option-name">Any Available</div>
+              <div class="barber-option-avatar">ÇDO</div>
+              <div class="barber-option-name">Çdo i Disponueshëm</div>
             </div>
             <div
               class="barber-option"
@@ -119,10 +119,10 @@
           </div>
         </div>
 
-        <!-- Date picker -->
+        <!-- Zgjedhja e datës -->
         <div class="date-section">
           <div class="form-group">
-            <label>Select Date</label>
+            <label>Zgjidhni Datën</label>
             <input
               type="date"
               [(ngModel)]="selectedDate"
@@ -131,13 +131,13 @@
             />
           </div>
           <p class="text-muted" style="font-size:12px;margin-top:6px" *ngIf="isSunday(selectedDate)">
-            ⚠ We are closed on Sundays. Please pick another day.
+            ⚠ Jemi të mbyllur të dielave. Ju lutemi zgjidhni një ditë tjetër.
           </p>
         </div>
 
-        <!-- Time slots -->
+        <!-- Oraret e disponueshme -->
         <div class="slots-section" *ngIf="selectedDate && !isSunday(selectedDate)">
-          <h3 class="subsection-title">Available Time Slots</h3>
+          <h3 class="subsection-title">Oraret e Disponueshme</h3>
           <div *ngIf="loadingSlots" class="text-center"><div class="spinner"></div></div>
           <p *ngIf="slotsError" class="error-msg">{{ slotsError }}</p>
           <div class="slots-grid" *ngIf="!loadingSlots && slots.length > 0">
@@ -152,69 +152,69 @@
             </button>
           </div>
           <p class="text-muted text-center" *ngIf="!loadingSlots && !slotsError && slots.length === 0 && selectedDate">
-            No slots available for this date. Try another day.
+            Nuk ka orare të disponueshme për këtë datë. Provo ditë tjetër.
           </p>
         </div>
       </div>
 
       <div class="step-nav">
-        <button class="btn btn-dark" (click)="back()">&#8592; Back</button>
+        <button class="btn btn-dark" (click)="back()">&#8592; Kthehu</button>
         <button class="btn btn-gold" (click)="next()" [disabled]="!canGoNext()">
-          Next: Your Info <span>&#8594;</span>
+          Hapi Tjetër: Të Dhënat <span>&#8594;</span>
         </button>
       </div>
     </div>
 
-    <!-- ===== STEP 3: PERSONAL INFO ===== -->
+    <!-- ===== HAPI 3: TË DHËNAT PERSONALE ===== -->
     <div class="step-content" *ngIf="currentStep === 3">
       <div class="step-card">
-        <h2 class="step-heading">Your Information</h2>
-        <p class="step-sub text-muted">Please fill in your details to complete the booking.</p>
+        <h2 class="step-heading">Të Dhënat Tuaja</h2>
+        <p class="step-sub text-muted">Ju lutemi plotësoni të dhënat tuaja për të përfunduar rezervimin.</p>
 
         <div class="form-grid">
           <div class="form-group">
-            <label>First Name *</label>
-            <input type="text" [(ngModel)]="firstName" placeholder="Enter first name" />
+            <label>Emri *</label>
+            <input type="text" [(ngModel)]="firstName" placeholder="Shkruani emrin" />
           </div>
           <div class="form-group">
-            <label>Last Name *</label>
-            <input type="text" [(ngModel)]="lastName" placeholder="Enter last name" />
+            <label>Mbiemri *</label>
+            <input type="text" [(ngModel)]="lastName" placeholder="Shkruani mbiemrin" />
           </div>
           <div class="form-group">
-            <label>Phone Number *</label>
+            <label>Numri i Telefonit *</label>
             <input type="tel" [(ngModel)]="phone" placeholder="+355 69 000 0000" />
           </div>
           <div class="form-group">
-            <label>Email <span class="text-muted">(optional)</span></label>
-            <input type="email" [(ngModel)]="email" placeholder="your@email.com" />
+            <label>Email <span class="text-muted">(opsionale)</span></label>
+            <input type="email" [(ngModel)]="email" placeholder="emaili@juaj.com" />
           </div>
           <div class="form-group form-full">
-            <label>Notes <span class="text-muted">(optional)</span></label>
-            <textarea [(ngModel)]="notes" placeholder="Any special requests or notes..."></textarea>
+            <label>Shënime <span class="text-muted">(opsionale)</span></label>
+            <textarea [(ngModel)]="notes" placeholder="Kërkesa speciale ose shënime..."></textarea>
           </div>
         </div>
 
-        <!-- Summary -->
+        <!-- Përmbledhja -->
         <div class="booking-summary">
-          <h3 class="summary-title">Booking Summary</h3>
+          <h3 class="summary-title">Përmbledhja e Rezervimit</h3>
           <div class="summary-row">
-            <span class="summary-label">Service</span>
+            <span class="summary-label">Shërbimi</span>
             <span class="summary-value text-gold">{{ selectedService?.name }}</span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Barber</span>
-            <span class="summary-value">{{ selectedBarber ? (selectedBarber.fullName || (selectedBarber.firstName + ' ' + selectedBarber.lastName)) : 'Any Available' }}</span>
+            <span class="summary-label">Berberi</span>
+            <span class="summary-value">{{ selectedBarber ? (selectedBarber.fullName || (selectedBarber.firstName + ' ' + selectedBarber.lastName)) : 'Çdo i Disponueshëm' }}</span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Date</span>
+            <span class="summary-label">Data</span>
             <span class="summary-value">{{ formatDate(selectedDate) }}</span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Time</span>
+            <span class="summary-label">Ora</span>
             <span class="summary-value">{{ selectedTime }}</span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Price</span>
+            <span class="summary-label">Çmimi</span>
             <span class="summary-value text-gold">{{ selectedService?.price | number:'1.0-0' }} ALL</span>
           </div>
         </div>
@@ -223,51 +223,51 @@
       </div>
 
       <div class="step-nav">
-        <button class="btn btn-dark" (click)="back()">&#8592; Back</button>
+        <button class="btn btn-dark" (click)="back()">&#8592; Kthehu</button>
         <button class="btn btn-gold" (click)="book()" [disabled]="!canGoNext() || booking">
-          <span *ngIf="booking">Booking...</span>
-          <span *ngIf="!booking">Confirm Booking &#8594;</span>
+          <span *ngIf="booking">Duke rezervuar...</span>
+          <span *ngIf="!booking">Konfirmo Rezervimin &#8594;</span>
         </button>
       </div>
     </div>
 
-    <!-- ===== STEP 4: CONFIRMATION ===== -->
+    <!-- ===== HAPI 4: KONFIRMIMI ===== -->
     <div class="step-content confirmation" *ngIf="currentStep === 4 && result">
       <div class="confirm-card">
         <div class="confirm-icon">✓</div>
-        <h2 class="confirm-title">Booking Confirmed!</h2>
+        <h2 class="confirm-title">Rezervimi u Konfirmua!</h2>
         <p class="confirm-sub">
-          Thank you, <strong>{{ result.firstName }}</strong>! Your appointment has been booked successfully.
+          Faleminderit, <strong>{{ result.firstName }}</strong>! Takimi juaj u rezervua me sukses.
         </p>
 
         <div class="confirm-details">
           <div class="confirm-row">
-            <span>Service</span>
+            <span>Shërbimi</span>
             <span class="text-gold">{{ result.serviceName }}</span>
           </div>
           <div class="confirm-row" *ngIf="result.barberName">
-            <span>Barber</span>
+            <span>Berberi</span>
             <span>{{ result.barberName }}</span>
           </div>
           <div class="confirm-row">
-            <span>Date</span>
+            <span>Data</span>
             <span>{{ formatDate(result.appointmentDate) }}</span>
           </div>
           <div class="confirm-row">
-            <span>Time</span>
+            <span>Ora</span>
             <span>{{ result.appointmentTime }}</span>
           </div>
         </div>
 
         <div class="confirm-token">
-          <span class="token-label">Your Booking Token</span>
+          <span class="token-label">Kodi i Rezervimit Tuaj</span>
           <span class="token-value">{{ result.bookingToken }}</span>
-          <p class="token-hint text-muted">Save this token to check or cancel your booking.</p>
+          <p class="token-hint text-muted">Ruaje këtë kod për të kontrolluar ose anuluar rezervimin tënd.</p>
         </div>
 
         <div class="confirm-actions">
-          <a [routerLink]="['/status', result.bookingToken]" class="btn btn-gold">Check Status</a>
-          <a routerLink="/" class="btn btn-dark">Back to Home</a>
+          <a [routerLink]="['/status', result.bookingToken]" class="btn btn-gold">Kontrollo Statusin</a>
+          <a routerLink="/" class="btn btn-dark">Kthehu në Ballina</a>
         </div>
       </div>
     </div>

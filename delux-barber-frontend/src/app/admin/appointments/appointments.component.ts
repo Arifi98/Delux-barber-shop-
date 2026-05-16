@@ -118,16 +118,24 @@ export class AppointmentsComponent implements OnInit {
   patchStatus(a: Appointment, status: string) {
     this.api.patchStatus(a.id, status).subscribe({
       next: () => this.load(),
-      error: () => alert('Failed to update status.')
+      error: () => alert('Gabim gjatë ndryshimit të statusit.')
     });
   }
 
   delete(a: Appointment) {
-    if (!confirm(`Delete appointment for ${a.firstName} ${a.lastName}?`)) return;
+    if (!confirm(`Fshi rezervimin për ${a.firstName} ${a.lastName}?`)) return;
     this.api.deleteAppointment(a.id).subscribe({
       next: () => this.load(),
-      error: () => alert('Failed to delete appointment.')
+      error: () => alert('Gabim gjatë fshirjes së rezervimit.')
     });
+  }
+
+  translateStatus(s: string): string {
+    const map: Record<string, string> = {
+      Pending: 'Në Pritje', Confirmed: 'Konfirmuar',
+      Completed: 'Përfunduar', Cancelled: 'Anuluar', NoShow: 'Nuk u Paraqit'
+    };
+    return map[s] ?? s;
   }
 
   getStatusClass(status: string): string {

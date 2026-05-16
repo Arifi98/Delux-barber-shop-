@@ -51,6 +51,17 @@ export class StatusComponent implements OnInit {
   formatDate(dateStr: string): string {
     if (!dateStr) return '';
     const d = new Date(dateStr);
-    return d.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    return d.toLocaleDateString('sq-AL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  translateStatus(s: string): string {
+    const map: Record<string, string> = {
+      Pending: 'Në Pritje',
+      Confirmed: 'Konfirmuar',
+      Completed: 'Përfunduar',
+      Cancelled: 'Anuluar',
+      NoShow: 'Nuk u Paraqit'
+    };
+    return map[s] ?? s;
   }
 }

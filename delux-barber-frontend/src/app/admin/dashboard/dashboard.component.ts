@@ -33,4 +33,15 @@ export class DashboardComponent implements OnInit {
     };
     return map[status] ?? 'badge-pending';
   }
+
+  translateStatus(s: string): string {
+    const map: Record<string, string> = {
+      Pending: 'Në Pritje',
+      Confirmed: 'Konfirmuar',
+      Completed: 'Përfunduar',
+      Cancelled: 'Anuluar',
+      NoShow: 'Nuk u Paraqit'
+    };
+    return map[s] ?? s;
+  }
 }

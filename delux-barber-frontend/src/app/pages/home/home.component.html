@@ -6,13 +6,13 @@
       <span class="logo-text">DELUX</span>
     </a>
     <ul class="nav-links">
-      <li><a routerLink="/" class="nav-link">Home</a></li>
-      <li><a href="#services" class="nav-link">Services</a></li>
-      <li><a href="#barbers" class="nav-link">Barbers</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a routerLink="/" class="nav-link">Kryefaqja</a></li>
+      <li><a href="#services" class="nav-link">Shërbimet</a></li>
+      <li><a href="#barbers" class="nav-link">Berberët</a></li>
+      <li><a href="#contact" class="nav-link">Kontakt</a></li>
     </ul>
     <div class="nav-actions">
-      <a routerLink="/book" class="btn btn-gold btn-sm">Book Now</a>
+      <a routerLink="/book" class="btn btn-gold btn-sm">Rezervo Tani</a>
     </div>
     <button class="nav-hamburger" onclick="this.closest('nav').classList.toggle('open')">
       <span></span><span></span><span></span>
@@ -24,38 +24,38 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Premium Barbershop Experience</p>
+    <p class="hero-eyebrow">Eksperiencë Premium Berberie</p>
     <h1 class="hero-title">
-      PRECISION CUTS.<br>
-      <span class="hero-title-gold">PREMIUM STYLE.</span>
+      PRERJE PRECIZE.<br>
+      <span class="hero-title-gold">STIL PREMIUM.</span>
     </h1>
     <p class="hero-subtitle">
-      Step into Delux Barber Shop — where master craftsmen sculpt confidence.<br>
-      Every cut is an art. Every visit, a ritual.
+      Hyr te Delux Barber Shop — ku zejtarët e mëdhenj skulpturojnë besimin.<br>
+      Çdo prerje është një art. Çdo vizitë, një ritual.
     </p>
     <div class="hero-actions">
-      <a routerLink="/book" class="btn btn-gold">Book Appointment</a>
-      <a routerLink="/status/check" class="btn btn-outline-gold">Check Status</a>
+      <a routerLink="/book" class="btn btn-gold">Rezervo Takim</a>
+      <a routerLink="/status/check" class="btn btn-outline-gold">Kontrollo Statusin</a>
     </div>
     <div class="hero-stats">
       <div class="stat">
         <span class="stat-num">5+</span>
-        <span class="stat-label">Expert Barbers</span>
+        <span class="stat-label">Berberë Ekspertë</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
         <span class="stat-num">2000+</span>
-        <span class="stat-label">Happy Clients</span>
+        <span class="stat-label">Klientë të Kënaqur</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
         <span class="stat-num">10+</span>
-        <span class="stat-label">Years Experience</span>
+        <span class="stat-label">Vjet Eksperiencë</span>
       </div>
     </div>
   </div>
   <div class="hero-scroll">
-    <span>Scroll Down</span>
+    <span>Poshtë</span>
     <div class="scroll-line"></div>
   </div>
 </section>
@@ -64,9 +64,9 @@
 <section class="section" id="services">
   <div class="section-container">
     <div class="section-header">
-      <p class="section-eyebrow">What We Offer</p>
-      <h2 class="section-title">Our <span class="text-gold">Services</span></h2>
-      <p class="section-subtitle">From classic cuts to luxury grooming — we do it all with precision and style.</p>
+      <p class="section-eyebrow">Çfarë Ofrojmë</p>
+      <h2 class="section-title">Shërbimet <span class="text-gold">Tona</span></h2>
+      <p class="section-subtitle">Nga prerjet klasike deri tek grooming luksoz — i bëjmë të gjitha me precizion dhe stil.</p>
     </div>
     <div class="services-grid" *ngIf="services.length > 0; else servicesLoading">
       <div class="service-card" *ngFor="let service of services">
@@ -79,17 +79,17 @@
             <span class="service-price">{{ service.price | number:'1.0-0' }} ALL</span>
           </div>
         </div>
-        <a routerLink="/book" class="service-book-btn">Book</a>
+        <a routerLink="/book" class="service-book-btn">Rezervo</a>
       </div>
     </div>
     <ng-template #servicesLoading>
       <div class="text-center" style="padding:40px 0">
         <div class="spinner"></div>
-        <p class="text-muted">Loading services...</p>
+        <p class="text-muted">Duke ngarkuar shërbimet...</p>
       </div>
     </ng-template>
     <div class="section-cta">
-      <a routerLink="/book" class="btn btn-gold">Book Any Service</a>
+      <a routerLink="/book" class="btn btn-gold">Rezervo Çdo Shërbim</a>
     </div>
   </div>
 </section>
@@ -98,9 +98,9 @@
 <section class="section section-alt" id="barbers">
   <div class="section-container">
     <div class="section-header">
-      <p class="section-eyebrow">Meet The Team</p>
-      <h2 class="section-title">Our <span class="text-gold">Barbers</span></h2>
-      <p class="section-subtitle">Skilled craftsmen dedicated to making you look your best.</p>
+      <p class="section-eyebrow">Njihuni me Ekipin</p>
+      <h2 class="section-title">Berberët <span class="text-gold">Tanë</span></h2>
+      <p class="section-subtitle">Zejtarë të aftë të përkushtuar të ta bëjnë pamjen tënde sa më të mirë.</p>
     </div>
     <div class="barbers-grid" *ngIf="barbers.length > 0; else barbersLoading">
       <div class="barber-card" *ngFor="let barber of barbers">
@@ -114,52 +114,52 @@
           <h3 class="barber-name">{{ barber.fullName || (barber.firstName + ' ' + barber.lastName) }}</h3>
           <p class="barber-specialty" *ngIf="barber.specialty">{{ barber.specialty }}</p>
           <p class="barber-bio" *ngIf="barber.bio">{{ barber.bio }}</p>
-          <a routerLink="/book" class="btn btn-outline-gold btn-sm" style="margin-top:12px">Book Now</a>
+          <a routerLink="/book" class="btn btn-outline-gold btn-sm" style="margin-top:12px">Rezervo Tani</a>
         </div>
       </div>
     </div>
     <ng-template #barbersLoading>
       <div class="text-center" style="padding:40px 0">
         <div class="spinner"></div>
-        <p class="text-muted">Loading barbers...</p>
+        <p class="text-muted">Duke ngarkuar berberët...</p>
       </div>
     </ng-template>
   </div>
 </section>
 
-<!-- WHY CHOOSE US -->
+<!-- PSE NE -->
 <section class="section" id="about">
   <div class="section-container">
     <div class="section-header">
-      <p class="section-eyebrow">Why Delux</p>
-      <h2 class="section-title">The <span class="text-gold">Delux</span> Experience</h2>
+      <p class="section-eyebrow">Pse Delux</p>
+      <h2 class="section-title">Eksperienca <span class="text-gold">Delux</span></h2>
     </div>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">🏆</div>
-        <h3>Master Craftsmen</h3>
-        <p>Our barbers are trained professionals with years of experience in precision cuts and grooming.</p>
+        <h3>Zejtarë Ekspertë</h3>
+        <p>Berberët tanë janë profesionistë të trajnuar me vite eksperience në prerje precize dhe grooming.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">✨</div>
-        <h3>Premium Products</h3>
-        <p>We use only the finest grooming products to ensure the best results for your hair and skin.</p>
+        <h3>Produkte Premium</h3>
+        <p>Përdorim vetëm produktet më të mira të grooming-ut për të siguruar rezultate të shkëlqyera për flokët dhe lëkurën tuaj.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📅</div>
-        <h3>Easy Booking</h3>
-        <p>Book your appointment online in seconds. No waiting, no hassle — just show up and look sharp.</p>
+        <h3>Rezervim i Lehtë</h3>
+        <p>Rezervoni takimin online në sekonda. Pa pritje, pa komplikime — vetëm paraqituni dhe dukeni me stil.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">💈</div>
-        <h3>Classic Atmosphere</h3>
-        <p>A premium barbershop environment designed for comfort, style, and the classic barber experience.</p>
+        <h3>Atmosferë Klasike</h3>
+        <p>Një mjedis premium berberie projektuar për komoditet, stil dhe eksperiencën klasike të berberit.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT / FOOTER -->
+<!-- FOOTER / KONTAKT -->
 <footer class="footer" id="contact">
   <div class="footer-container">
     <div class="footer-brand">
@@ -167,7 +167,7 @@
         <span class="logo-icon">✂</span>
         <span class="logo-text">DELUX</span>
       </div>
-      <p class="footer-tagline">Precision Cuts. Premium Style.</p>
+      <p class="footer-tagline">Prerje Precize. Stil Premium.</p>
       <div class="footer-social">
         <a href="#" class="social-link">FB</a>
         <a href="#" class="social-link">IG</a>
@@ -175,7 +175,7 @@
       </div>
     </div>
     <div class="footer-info">
-      <h4>Contact</h4>
+      <h4>Kontakt</h4>
       <ul>
         <li>📍 Rruga Myslym Shyri, Tiranë</li>
         <li>📞 <a href="tel:+355691234567">+355 69 123 4567</a></li>
@@ -183,23 +183,23 @@
       </ul>
     </div>
     <div class="footer-hours">
-      <h4>Hours</h4>
+      <h4>Orari</h4>
       <ul>
-        <li><span>Monday – Saturday</span><span>09:00 – 20:00</span></li>
-        <li><span>Sunday</span><span class="text-muted">Closed</span></li>
+        <li><span>E Hënë – E Shtunë</span><span>09:00 – 20:00</span></li>
+        <li><span>E Diel</span><span class="text-muted">Mbyllur</span></li>
       </ul>
     </div>
     <div class="footer-links">
-      <h4>Quick Links</h4>
+      <h4>Lidhje të Shpejta</h4>
       <ul>
-        <li><a routerLink="/book">Book Appointment</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#barbers">Our Barbers</a></li>
+        <li><a routerLink="/book">Rezervo Takim</a></li>
+        <li><a href="#services">Shërbimet</a></li>
+        <li><a href="#barbers">Berberët Tanë</a></li>
         <li><a routerLink="/admin/login">Admin</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; {{ 2026 }} Delux Barber Shop. All rights reserved.</p>
+    <p>&copy; {{ 2026 }} Delux Barber Shop. Të gjitha të drejtat e rezervuara.</p>
   </div>
 </footer>

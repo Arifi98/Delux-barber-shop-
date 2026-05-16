@@ -1,6 +1,6 @@
 <div class="status-page">
   <div class="status-header">
-    <a routerLink="/" class="back-home">&#8592; Back to Home</a>
+    <a routerLink="/" class="back-home">&#8592; Kthehu në Ballina</a>
     <div class="book-logo">
       <span class="logo-icon">✂</span>
       <span class="logo-text">DELUX</span>
@@ -9,105 +9,105 @@
 
   <div class="status-container">
     <div class="status-title-area">
-      <h1>Booking <span class="text-gold">Status</span></h1>
-      <p class="text-muted">View your appointment details below.</p>
+      <h1>Statusi i <span class="text-gold">Rezervimit</span></h1>
+      <p class="text-muted">Shikoni detajet e takimit tuaj më poshtë.</p>
     </div>
 
-    <!-- Loading -->
+    <!-- Duke ngarkuar -->
     <div *ngIf="loading" class="text-center">
       <div class="spinner"></div>
-      <p class="text-muted">Loading booking details...</p>
+      <p class="text-muted">Duke ngarkuar detajet e rezervimit...</p>
     </div>
 
-    <!-- Error -->
+    <!-- Gabim -->
     <div *ngIf="!loading && error" class="error-card">
       <div class="error-icon">✕</div>
-      <h3>Booking Not Found</h3>
+      <h3>Rezervimi Nuk u Gjet</h3>
       <p>{{ error }}</p>
-      <a routerLink="/" class="btn btn-gold" style="margin-top:20px">Go Home</a>
+      <a routerLink="/" class="btn btn-gold" style="margin-top:20px">Shko në Ballina</a>
     </div>
 
-    <!-- Status Card -->
+    <!-- Karta e Statusit -->
     <div *ngIf="!loading && status" class="status-card">
-      <!-- Token -->
+      <!-- Kodi -->
       <div class="status-token-row">
-        <span class="token-label">Token</span>
+        <span class="token-label">Kodi</span>
         <span class="token-val">{{ status.token }}</span>
       </div>
 
-      <!-- Status Badge -->
+      <!-- Badge i Statusit -->
       <div class="status-badge-row">
         <span class="badge" [ngClass]="getStatusClass(status.status)">
-          {{ status.status }}
+          {{ translateStatus(status.status) }}
         </span>
-        <span class="created-at text-muted">Booked on {{ status.createdAt | date:'dd/MM/yyyy' }}</span>
+        <span class="created-at text-muted">Rezervuar më {{ status.createdAt | date:'dd/MM/yyyy' }}</span>
       </div>
 
-      <!-- Cancelled banner -->
+      <!-- Banner anulimi -->
       <div *ngIf="cancelled" class="cancelled-banner">
-        ✓ Your appointment has been cancelled successfully.
+        ✓ Rezervimi juaj u anulua me sukses.
       </div>
 
-      <!-- Details -->
+      <!-- Detajet -->
       <div class="details-grid">
         <div class="detail-item">
-          <span class="detail-label">Name</span>
+          <span class="detail-label">Emri</span>
           <span class="detail-value">{{ status.firstName }} {{ status.lastName }}</span>
         </div>
         <div class="detail-item" *ngIf="status.serviceName">
-          <span class="detail-label">Service</span>
+          <span class="detail-label">Shërbimi</span>
           <span class="detail-value text-gold">{{ status.serviceName }}</span>
         </div>
         <div class="detail-item" *ngIf="status.barberName">
-          <span class="detail-label">Barber</span>
+          <span class="detail-label">Berberi</span>
           <span class="detail-value">{{ status.barberName }}</span>
         </div>
         <div class="detail-item">
-          <span class="detail-label">Date</span>
+          <span class="detail-label">Data</span>
           <span class="detail-value">{{ formatDate(status.appointmentDate) }}</span>
         </div>
         <div class="detail-item">
-          <span class="detail-label">Time</span>
+          <span class="detail-label">Ora</span>
           <span class="detail-value">{{ status.appointmentTime }}</span>
         </div>
         <div class="detail-item" *ngIf="status.notes">
-          <span class="detail-label">Notes</span>
+          <span class="detail-label">Shënime</span>
           <span class="detail-value">{{ status.notes }}</span>
         </div>
       </div>
 
-      <!-- Status Info -->
+      <!-- Kutia e informacionit -->
       <div class="status-info-box" [ngClass]="'info-' + status.status.toLowerCase()">
         <ng-container [ngSwitch]="status.status">
           <ng-container *ngSwitchCase="'Pending'">
-            ⏳ Your booking is pending confirmation. We will confirm it shortly.
+            ⏳ Rezervimi juaj pret konfirmim. Do ta konfirmojmë së shpejti.
           </ng-container>
           <ng-container *ngSwitchCase="'Confirmed'">
-            ✓ Your appointment is confirmed. See you soon!
+            ✓ Takimi juaj është i konfirmuar. Shihemi së shpejti!
           </ng-container>
           <ng-container *ngSwitchCase="'Completed'">
-            ✓ This appointment has been completed. Thank you for visiting Delux!
+            ✓ Ky takim është përfunduar. Faleminderit që vizituat Delux!
           </ng-container>
           <ng-container *ngSwitchCase="'Cancelled'">
-            ✕ This appointment has been cancelled.
+            ✕ Ky takim është anuluar.
           </ng-container>
           <ng-container *ngSwitchCase="'NoShow'">
-            ⚠ This appointment was marked as no-show.
+            ⚠ Ky takim u shënua si "nuk u paraqit".
           </ng-container>
         </ng-container>
       </div>
 
-      <!-- Cancel button -->
+      <!-- Butoni i anulimit -->
       <div class="status-actions" *ngIf="status.canCancel && !cancelled && status.status !== 'Cancelled'">
         <button class="btn btn-danger" (click)="cancel()" [disabled]="cancelling">
-          <span *ngIf="cancelling">Cancelling...</span>
-          <span *ngIf="!cancelling">Cancel Appointment</span>
+          <span *ngIf="cancelling">Duke anuluar...</span>
+          <span *ngIf="!cancelling">Anulo Rezervimin</span>
         </button>
       </div>
 
       <div class="status-actions">
-        <a routerLink="/" class="btn btn-dark">Back to Home</a>
-        <a routerLink="/book" class="btn btn-outline-gold">Book New Appointment</a>
+        <a routerLink="/" class="btn btn-dark">Kthehu në Ballina</a>
+        <a routerLink="/book" class="btn btn-outline-gold">Rezervo Takim të Ri</a>
       </div>
     </div>
   </div>

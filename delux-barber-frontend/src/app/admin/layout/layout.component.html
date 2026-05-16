@@ -17,7 +17,7 @@
         class="nav-item"
       >
         <span class="nav-icon">▦</span>
-        <span class="nav-label">Dashboard</span>
+        <span class="nav-label">Paneli Kryesor</span>
       </a>
       <a
         routerLink="/admin/appointments"
@@ -25,7 +25,7 @@
         class="nav-item"
       >
         <span class="nav-icon">📅</span>
-        <span class="nav-label">Appointments</span>
+        <span class="nav-label">Rezervimet</span>
       </a>
       <a
         routerLink="/admin/barbers"
@@ -33,7 +33,7 @@
         class="nav-item"
       >
         <span class="nav-icon">✂</span>
-        <span class="nav-label">Barbers</span>
+        <span class="nav-label">Berberët</span>
       </a>
       <a
         routerLink="/admin/services"
@@ -41,7 +41,7 @@
         class="nav-item"
       >
         <span class="nav-icon">★</span>
-        <span class="nav-label">Services</span>
+        <span class="nav-label">Shërbimet</span>
       </a>
       <a
         routerLink="/admin/clients"
@@ -49,18 +49,18 @@
         class="nav-item"
       >
         <span class="nav-icon">◉</span>
-        <span class="nav-label">Clients</span>
+        <span class="nav-label">Klientët</span>
       </a>
     </nav>
 
     <div class="sidebar-bottom">
       <a routerLink="/" class="nav-item nav-item-muted">
         <span class="nav-icon">↗</span>
-        <span class="nav-label">View Website</span>
+        <span class="nav-label">Shiko Faqen</span>
       </a>
       <button class="nav-item nav-item-danger" (click)="logout()">
         <span class="nav-icon">⎋</span>
-        <span class="nav-label">Logout</span>
+        <span class="nav-label">Dil</span>
       </button>
     </div>
   </aside>
@@ -68,19 +68,19 @@
   <!-- OVERLAY (mobile) -->
   <div class="sidebar-overlay" *ngIf="sidebarOpen()" (click)="toggleSidebar()"></div>
 
-  <!-- MAIN -->
+  <!-- KRYESORI -->
   <div class="main-wrap">
-    <!-- Top bar -->
+    <!-- Shiriti i sipërm -->
     <header class="top-bar">
       <button class="hamburger" (click)="toggleSidebar()">
         <span></span><span></span><span></span>
       </button>
       <div class="top-bar-right">
-        <span class="top-bar-label text-muted">Admin Panel</span>
+        <span class="top-bar-label text-muted">Paneli i Adminit</span>
       </div>
     </header>
 
-    <!-- Content -->
+    <!-- Përmbajtja -->
     <main class="main-content">
       <router-outlet />
     </main>

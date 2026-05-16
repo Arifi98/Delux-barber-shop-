@@ -1,16 +1,16 @@
 <div class="clients-page">
   <div class="page-header">
     <div>
-      <h1>Clients</h1>
-      <p class="text-muted">View all registered clients and their booking history.</p>
+      <h1>Klientët</h1>
+      <p class="text-muted">Shikoni të gjithë klientët e regjistruar dhe historikun e rezervimeve.</p>
     </div>
     <div class="form-group" style="margin-bottom:0;min-width:260px">
-      <label>Search</label>
+      <label>Kërko</label>
       <input
         type="text"
         [(ngModel)]="search"
         (ngModelChange)="applySearch()"
-        placeholder="Name, phone, or email..."
+        placeholder="Emri, telefoni ose email..."
       />
     </div>
   </div>
@@ -19,18 +19,18 @@
 
   <div class="table-card" *ngIf="!loading">
     <div class="table-info" *ngIf="clients.length > 0">
-      <span class="text-muted">Showing {{ filtered.length }} of {{ clients.length }} clients</span>
+      <span class="text-muted">Duke shfaqur {{ filtered.length }} nga {{ clients.length }} klientë</span>
     </div>
     <div class="table-wrap">
       <table class="data-table" *ngIf="filtered.length > 0; else noClients">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Phone</th>
+            <th>Emri</th>
+            <th>Telefoni</th>
             <th>Email</th>
-            <th>Total Bookings</th>
-            <th>Last Appointment</th>
-            <th>Member Since</th>
+            <th>Rezervime Gjithsej</th>
+            <th>Takimi i Fundit</th>
+            <th>Anëtar Nga</th>
           </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@
             </td>
             <td>
               <span *ngIf="c.lastAppointmentDate">{{ c.lastAppointmentDate | date:'dd/MM/yyyy' }}</span>
-              <span *ngIf="!c.lastAppointmentDate" class="text-muted">Never</span>
+              <span *ngIf="!c.lastAppointmentDate" class="text-muted">Asnjëherë</span>
             </td>
             <td class="text-muted">{{ c.createdAt | date:'dd/MM/yyyy' }}</td>
           </tr>
@@ -56,7 +56,7 @@
       </table>
       <ng-template #noClients>
         <p class="text-muted text-center" style="padding:40px">
-          {{ search ? 'No clients match your search.' : 'No clients yet.' }}
+          {{ search ? 'Nuk ka klientë që përputhen me kërkimin.' : 'Nuk ka klientë ende.' }}
         </p>
       </ng-template>
     </div>
